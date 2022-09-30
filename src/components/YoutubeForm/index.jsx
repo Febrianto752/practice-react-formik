@@ -41,9 +41,7 @@ const YoutubeForm = () => {
                     className="form-control"
                     id="name"
                     name="name"
-                    onBlur={formik.handleBlur}
-                    onChange={formik.handleChange}
-                    value={formik.values.name}
+                    {...formik.getFieldProps("name")}
                   />
                   {formik.touched.name && formik.errors.name ? (
                     <small style={{ color: "red" }}>{formik.errors.name}</small>
@@ -60,9 +58,7 @@ const YoutubeForm = () => {
                     className="form-control"
                     id="email"
                     name="email"
-                    onBlur={formik.handleBlur}
-                    onChange={formik.handleChange}
-                    value={formik.values.email}
+                    {...formik.getFieldProps("email")}
                   />
                   {formik.touched.email && formik.errors.email ? (
                     <small style={{ color: "red" }}>
@@ -81,9 +77,7 @@ const YoutubeForm = () => {
                     className="form-control"
                     id="channel"
                     name="channel"
-                    onBlur={formik.handleBlur}
-                    onChange={formik.handleChange}
-                    value={formik.values.channel}
+                    {...formik.getFieldProps("channel")}
                   />
                   {formik.touched.channel && formik.errors.channel ? (
                     <small style={{ color: "red" }}>
