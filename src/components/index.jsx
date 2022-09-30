@@ -1,3 +1,4 @@
 import YoutubeForm from "./YoutubeForm";
+import About from "./About";
 
-export { YoutubeForm };
+export { YoutubeForm, About };

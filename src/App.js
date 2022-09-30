@@ -1,11 +1,12 @@
-// import "./App.css";
-import { YoutubeForm } from "./components";
+import { YoutubeForm, About } from "./components";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <YoutubeForm />
-    </div>
+    <Routes>
+      <Route path="/" element={<YoutubeForm />} />
+      <Route path="/about" element={<About />} />
+    </Routes>
   );
 }
 
