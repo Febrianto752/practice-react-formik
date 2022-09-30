@@ -1,4 +1,13 @@
 import { useFormik } from "formik";
+import * as Yup from "yup";
+
+const validationSchema = Yup.object({
+  name: Yup.string().required("Name field cannot be empty!"),
+  email: Yup.string()
+    .email("Invalid email format")
+    .required("Email field cannot be empty"),
+  channel: Yup.string().required("Channel field cannot be empty!"),
+});
 
 const YoutubeForm = () => {
   const formik = useFormik({
@@ -10,24 +19,7 @@ const YoutubeForm = () => {
     onSubmit: (values) => {
       console.log(values);
     },
-    validate: (values) => {
-      let errors = {}; // nama variabel bebas
-      if (!values.name) {
-        errors.name = "Name field cannot be empty";
-      }
-      if (!values.email) {
-        errors.email = "Email field cannot be empty";
-      } else if (
-        !/[A-Z0-9._%+-]+@[A-Z0-9,-]+\.[A-Z]{2,4}$/i.test(values.email)
-      ) {
-        errors.email = "Invalid email format";
-      }
-      if (!values.channel) {
-        errors.channel = "Channel field cannot be empty";
-      }
-
-      return errors;
-    },
+    validationSchema,
   });
 
   console.log(formik.errors); // output awal : {}, kemudian output ketika terjadi error : {name: 'message error...'}
