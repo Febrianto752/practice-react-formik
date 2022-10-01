@@ -1,5 +1,6 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { TextError } from "../";
 
 const validationSchema = Yup.object({
   name: Yup.string().required("Name field cannot be empty!"),
@@ -46,7 +47,7 @@ const YoutubeForm = () => {
                       className="form-control"
                       placeholder="Enter name..."
                     />
-                    <ErrorMessage name="name" />
+                    <ErrorMessage name="name" component={TextError} />
                   </div>
                   <div className="mb-3">
                     <label htmlFor="email" class="form-label">
@@ -58,7 +59,11 @@ const YoutubeForm = () => {
                       name="email"
                       className="form-control"
                     />
-                    <ErrorMessage name="email" />
+                    <ErrorMessage name="email">
+                      {(errorMessage) => (
+                        <small className="text-danger">{errorMessage}</small>
+                      )}
+                    </ErrorMessage>
                   </div>
                   <div class="mb-3">
                     <label htmlFor="channel" class="form-label">
