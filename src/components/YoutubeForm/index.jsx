@@ -1,4 +1,4 @@
-import { useFormik } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
 const validationSchema = Yup.object({
@@ -9,21 +9,17 @@ const validationSchema = Yup.object({
   channel: Yup.string().required("Channel field cannot be empty!"),
 });
 
-const YoutubeForm = () => {
-  const formik = useFormik({
-    initialValues: {
-      name: "",
-      email: "",
-      channel: "",
-    },
-    onSubmit: (values) => {
-      console.log(values);
-    },
-    validationSchema,
-  });
+const initialValues = {
+  name: "",
+  email: "",
+  channel: "",
+};
 
-  console.log(formik.errors); // output awal : {}, kemudian output ketika terjadi error : {name: 'message error...'}
-  console.log(formik.touched); // output awal : {}, kemudian output ketika element on blur : {name: true}, nilai true menandakan bahwa input element tersebut sudah pernah terjadi event onBlur
+const handleSubmit = (values) => {
+  console.log(values);
+};
+
+const YoutubeForm = () => {
   return (
     <div className="my-5">
       <div className="row justify-content-center">
@@ -31,67 +27,54 @@ const YoutubeForm = () => {
           <h2 className="text-center">Youtube Form</h2>
           <div className="card shadow-sm">
             <div className="card-body text-left">
-              <form onSubmit={formik.handleSubmit}>
-                <div className="mb-3">
-                  <label htmlFor="name" className="form-label">
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="name"
-                    name="name"
-                    {...formik.getFieldProps("name")}
-                  />
-                  {formik.touched.name && formik.errors.name ? (
-                    <small style={{ color: "red" }}>{formik.errors.name}</small>
-                  ) : (
-                    ""
-                  )}
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="email" class="form-label">
-                    Email address
-                  </label>
-                  <input
-                    type="email"
-                    className="form-control"
-                    id="email"
-                    name="email"
-                    {...formik.getFieldProps("email")}
-                  />
-                  {formik.touched.email && formik.errors.email ? (
-                    <small style={{ color: "red" }}>
-                      {formik.errors.email}
-                    </small>
-                  ) : (
-                    ""
-                  )}
-                </div>
-                <div class="mb-3">
-                  <label htmlFor="channel" class="form-label">
-                    Channel
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="channel"
-                    name="channel"
-                    {...formik.getFieldProps("channel")}
-                  />
-                  {formik.touched.channel && formik.errors.channel ? (
-                    <small style={{ color: "red" }}>
-                      {formik.errors.channel}
-                    </small>
-                  ) : (
-                    ""
-                  )}
-                </div>
+              <Formik
+                initialValues={initialValues}
+                onSubmit={handleSubmit}
+                validationSchema={validationSchema}
+              >
+                <Form>
+                  <div className="mb-3">
+                    <label htmlFor="name" className="form-label">
+                      Name
+                    </label>
+                    <Field
+                      type="text"
+                      id="name"
+                      name="name"
+                      className="form-control"
+                    />
+                    <ErrorMessage name="name" />
+                  </div>
+                  <div className="mb-3">
+                    <label htmlFor="email" class="form-label">
+                      Email address
+                    </label>
+                    <Field
+                      type="email"
+                      id="email"
+                      name="email"
+                      className="form-control"
+                    />
+                    <ErrorMessage name="email" />
+                  </div>
+                  <div class="mb-3">
+                    <label htmlFor="channel" class="form-label">
+                      Channel
+                    </label>
+                    <Field
+                      type="text"
+                      id="channel"
+                      name="channel"
+                      className="form-control"
+                    />
+                    <ErrorMessage name="channel" />
+                  </div>
 
-                <button className="btn btn-primary" type="submit">
-                  Submit
-                </button>
-              </form>
+                  <button type="submit" className="btn btn-primary">
+                    Submit
+                  </button>
+                </Form>
+              </Formik>
             </div>
           </div>
         </div>
