@@ -13,6 +13,8 @@ const initialValues = {
   name: "",
   email: "",
   channel: "",
+  comments: "",
+  address: "",
 };
 
 const handleSubmit = (values) => {
@@ -42,6 +44,7 @@ const YoutubeForm = () => {
                       id="name"
                       name="name"
                       className="form-control"
+                      placeholder="Enter name..."
                     />
                     <ErrorMessage name="name" />
                   </div>
@@ -68,6 +71,41 @@ const YoutubeForm = () => {
                       className="form-control"
                     />
                     <ErrorMessage name="channel" />
+                  </div>
+                  <div className="mb-3">
+                    <label htmlFor="comments">Comments</label>
+                    <Field
+                      as="textarea"
+                      id="comments"
+                      name="comments"
+                      style={{ width: "100%" }}
+                    />
+                    <ErrorMessage name="comments" />
+                  </div>
+                  <div className="mb-3">
+                    <label htmlFor="address">Address</label>
+                    <Field id="address" name="address">
+                      {(props) => {
+                        console.log(props);
+                        /* output : {
+                        field:{name: 'address', value: '',onChange: func, onBlur: func, ...dll}, 
+                        form: {values: {... // seusai dengan initialValues}, errors: {... // if have validation and errors}, 
+                        touched: {... // attr and value touched here}, ...dll }, meta: {... // information about this input tag} }
+                        */
+                        const { field, form, meta } = props;
+                        return (
+                          <>
+                            <input type="text" id="address" {...field} />
+                            {meta.touched && meta.error ? (
+                              <small className="text-danger">
+                                {meta.error}
+                              </small>
+                            ) : null}
+                          </>
+                        );
+                      }}
+                    </Field>
+                    <ErrorMessage name="address" />
                   </div>
 
                   <button type="submit" className="btn btn-primary">
