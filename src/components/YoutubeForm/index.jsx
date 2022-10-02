@@ -1,4 +1,4 @@
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field, ErrorMessage, FieldArray } from "formik";
 import * as Yup from "yup";
 import { TextError } from "../";
 
@@ -21,6 +21,7 @@ const initialValues = {
     twitter: "",
   },
   phoneNumbers: ["", ""], // harus dibuat initial value arraynya
+  hobbies: [""],
 };
 
 const handleSubmit = (values) => {
@@ -156,6 +157,42 @@ const YoutubeForm = () => {
                       id="secondary_phone_number"
                       name="phoneNumbers[1]"
                     />
+                  </div>
+                  <div className="mb-3">
+                    <label htmlFor="secondary_phone_number">
+                      List of yout hobby
+                    </label>
+                    <FieldArray name="hobbies">
+                      {(fieldArrayProps) => {
+                        console.log(fieldArrayProps); // output : {push: ƒ, pop: ƒ, swap: ƒ, move: ƒ, insert: ƒ, …}
+                        const { push, remove, form } = fieldArrayProps;
+                        const { values } = form;
+                        const { hobbies } = values;
+
+                        return (
+                          <>
+                            {hobbies.map((hobby, index) => {
+                              return (
+                                <div key={index}>
+                                  <Field name={`hobbies[${index}]`} />
+                                  {index > 0 && (
+                                    <button onClick={() => remove(index)}>
+                                      -
+                                    </button>
+                                  )}
+                                  <button
+                                    type="button"
+                                    onClick={() => push("")}
+                                  >
+                                    +
+                                  </button>
+                                </div>
+                              );
+                            })}
+                          </>
+                        );
+                      }}
+                    </FieldArray>
                   </div>
 
                   <button type="submit" className="btn btn-primary">
