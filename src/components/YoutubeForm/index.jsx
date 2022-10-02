@@ -47,8 +47,6 @@ const YoutubeForm = () => {
                 initialValues={initialValues}
                 onSubmit={handleSubmit}
                 validationSchema={validationSchema}
-                validateOnChange={false}
-                validateOnBlur={false}
               >
                 <Form>
                   <div className="mb-3">
@@ -117,10 +115,18 @@ const YoutubeForm = () => {
                   </div>
                   <div className="mb-3">
                     <label htmlFor="address">Address</label>
-                    <Field name="address">
+                    <Field
+                      name="address"
+                      validate={(value) => {
+                        let error = null;
+                        if (!value) error = "address field cannot be empty!";
+
+                        return error;
+                      }}
+                    >
                       {(props) => {
                         const { field, form, meta } = props;
-                        console.log(form.errors);
+
                         return (
                           <>
                             <input
