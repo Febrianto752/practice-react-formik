@@ -47,6 +47,8 @@ const YoutubeForm = () => {
                 initialValues={initialValues}
                 onSubmit={handleSubmit}
                 validationSchema={validationSchema}
+                validateOnChange={false}
+                validateOnBlur={false}
               >
                 <Form>
                   <div className="mb-3">
@@ -56,7 +58,7 @@ const YoutubeForm = () => {
                     <FastField name="name">
                       {(props) => {
                         const { field, form, meta } = props;
-                        console.log("fast component");
+
                         return (
                           <>
                             <input
@@ -76,7 +78,7 @@ const YoutubeForm = () => {
                     </FastField>
                   </div>
                   <div className="mb-3">
-                    <label htmlFor="email" class="form-label">
+                    <label htmlFor="email" className="form-label">
                       Email address
                     </label>
                     <Field
@@ -91,8 +93,8 @@ const YoutubeForm = () => {
                       )}
                     </ErrorMessage>
                   </div>
-                  <div class="mb-3">
-                    <label htmlFor="channel" class="form-label">
+                  <div className="mb-3">
+                    <label htmlFor="channel" className="form-label">
                       Channel
                     </label>
                     <Field
@@ -118,7 +120,7 @@ const YoutubeForm = () => {
                     <Field name="address">
                       {(props) => {
                         const { field, form, meta } = props;
-                        console.log(field);
+                        console.log(form.errors);
                         return (
                           <>
                             <input
