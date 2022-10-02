@@ -1,4 +1,11 @@
-import { Formik, Form, Field, ErrorMessage, FieldArray } from "formik";
+import {
+  Formik,
+  Form,
+  Field,
+  ErrorMessage,
+  FieldArray,
+  FastField,
+} from "formik";
 import * as Yup from "yup";
 import { TextError } from "../";
 
@@ -46,14 +53,27 @@ const YoutubeForm = () => {
                     <label htmlFor="name" className="form-label">
                       Name
                     </label>
-                    <Field
-                      type="text"
-                      id="name"
-                      name="name"
-                      className="form-control"
-                      placeholder="Enter name..."
-                    />
-                    <ErrorMessage name="name" component={TextError} />
+                    <FastField name="name">
+                      {(props) => {
+                        const { field, form, meta } = props;
+                        console.log("fast component");
+                        return (
+                          <>
+                            <input
+                              type="text"
+                              {...field}
+                              className="form-control"
+                              id="name"
+                            />
+                            {meta.touched && meta.error ? (
+                              <small className="text-danger">
+                                {meta.error}
+                              </small>
+                            ) : null}
+                          </>
+                        );
+                      }}
+                    </FastField>
                   </div>
                   <div className="mb-3">
                     <label htmlFor="email" class="form-label">
@@ -95,9 +115,10 @@ const YoutubeForm = () => {
                   </div>
                   <div className="mb-3">
                     <label htmlFor="address">Address</label>
-                    <Field id="address" name="address">
+                    <Field name="address">
                       {(props) => {
                         const { field, form, meta } = props;
+                        console.log(field);
                         return (
                           <>
                             <input
@@ -115,7 +136,6 @@ const YoutubeForm = () => {
                         );
                       }}
                     </Field>
-                    <ErrorMessage name="address" />
                   </div>
 
                   <div className="mb-3">
@@ -125,6 +145,10 @@ const YoutubeForm = () => {
                       className="form-control"
                       id="facebook"
                       name="socials.facebook"
+                    />
+                    <ErrorMessage
+                      name="socials.facebook"
+                      component={TextError}
                     />
                   </div>
                   <div className="mb-3">
@@ -164,7 +188,6 @@ const YoutubeForm = () => {
                     </label>
                     <FieldArray name="hobbies">
                       {(fieldArrayProps) => {
-                        console.log(fieldArrayProps); // output : {push: ƒ, pop: ƒ, swap: ƒ, move: ƒ, insert: ƒ, …}
                         const { push, remove, form } = fieldArrayProps;
                         const { values } = form;
                         const { hobbies } = values;
