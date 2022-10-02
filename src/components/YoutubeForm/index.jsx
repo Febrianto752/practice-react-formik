@@ -16,6 +16,11 @@ const initialValues = {
   channel: "",
   comments: "",
   address: "",
+  socials: {
+    facebook: "",
+    twitter: "",
+  },
+  phoneNumbers: ["", ""], // harus dibuat initial value arraynya
 };
 
 const handleSubmit = (values) => {
@@ -91,16 +96,15 @@ const YoutubeForm = () => {
                     <label htmlFor="address">Address</label>
                     <Field id="address" name="address">
                       {(props) => {
-                        console.log(props);
-                        /* output : {
-                        field:{name: 'address', value: '',onChange: func, onBlur: func, ...dll}, 
-                        form: {values: {... // seusai dengan initialValues}, errors: {... // if have validation and errors}, 
-                        touched: {... // attr and value touched here}, ...dll }, meta: {... // information about this input tag} }
-                        */
                         const { field, form, meta } = props;
                         return (
                           <>
-                            <input type="text" id="address" {...field} />
+                            <input
+                              type="text"
+                              id="address"
+                              {...field}
+                              className="form-control"
+                            />
                             {meta.touched && meta.error ? (
                               <small className="text-danger">
                                 {meta.error}
@@ -111,6 +115,47 @@ const YoutubeForm = () => {
                       }}
                     </Field>
                     <ErrorMessage name="address" />
+                  </div>
+
+                  <div className="mb-3">
+                    <label htmlFor="facebook">Facebook</label>
+                    <Field
+                      type="text"
+                      className="form-control"
+                      id="facebook"
+                      name="socials.facebook"
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <label htmlFor="twitter">Twitter</label>
+                    <Field
+                      type="text"
+                      className="form-control"
+                      id="twitter"
+                      name="socials.twitter"
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <label htmlFor="primary_phone_number">
+                      Primary Phone Number
+                    </label>
+                    <Field
+                      type="number"
+                      className="form-control"
+                      id="primary_phone_number"
+                      name="phoneNumbers[0]"
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <label htmlFor="secondary_phone_number">
+                      Secondary Phone Number
+                    </label>
+                    <Field
+                      type="number"
+                      className="form-control"
+                      id="secondary_phone_number"
+                      name="phoneNumbers[1]"
+                    />
                   </div>
 
                   <button type="submit" className="btn btn-primary">
