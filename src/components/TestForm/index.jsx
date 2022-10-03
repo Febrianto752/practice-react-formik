@@ -13,8 +13,13 @@ const validationSchema = Yup.object({
     .min(3, "password length must be greater than three character"),
 });
 
-const handleSubmit = (values) => {
+const handleSubmit = (values, onSubmitProps) => {
   console.log("handle submit ", values);
+  console.log("on Submit Props ", onSubmitProps); // output : {resetForm: ƒ, validateForm: ƒ, validateField: ƒ, setErrors: ƒ, setFieldError: ƒ, setSubmitting: f}
+  // test proccess with use setTimeout
+  setTimeout(() => {
+    onSubmitProps.setSubmitting(false);
+  }, 2000);
 };
 
 const TestForm = () => {
@@ -25,6 +30,7 @@ const TestForm = () => {
           initialValues={initialValues}
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
+          validateOnMount
         >
           {(formik) => {
             console.log("value of formik ", formik); // output awal : {values: undefined, errors: {…}, touched: {…}, status: undefined, isSubmitting: false, …}
@@ -72,7 +78,11 @@ const TestForm = () => {
                   Validate all
                 </button>
 
-                <button type="submit" className="btn btn-primary">
+                <button
+                  type="submit"
+                  className="btn btn-primary"
+                  disabled={!formik.isValid || formik.isSubmitting}
+                >
                   Submit
                 </button>
               </Form>
