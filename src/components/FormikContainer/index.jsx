@@ -5,13 +5,15 @@ import { FormikControl } from "../";
 const initialValues = {
   username: "",
   email: "",
+  description: "",
 };
 
 const validationSchema = Yup.object({
-  username: Yup.string().required("username field cannot be empty"),
+  username: Yup.string().required("username field cannot be empty!"),
   email: Yup.string()
     .required("email field cannot be empty")
     .email("invalid email format"),
+  description: Yup.string().required("description field cannot be empty!"),
 });
 
 const handleSubmit = (values, onSubmitProps) => {
@@ -48,6 +50,12 @@ const FormikContainer = () => {
                   className="form-control"
                   labelText="Email"
                   placeholder="Enter Your Email..."
+                />
+                <FormikControl
+                  control="textarea"
+                  name="description"
+                  className="form-control"
+                  labelText="Description"
                 />
                 <button type="submit" className="btn btn-primary">
                   Submit

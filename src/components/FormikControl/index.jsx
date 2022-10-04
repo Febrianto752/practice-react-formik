@@ -1,4 +1,4 @@
-import { InputForm } from "../";
+import { InputForm, TextareaForm } from "../";
 
 const FormikControl = (props) => {
   const { control, ...attributesField } = props;
@@ -9,7 +9,7 @@ const FormikControl = (props) => {
       return <InputForm {...attributesField} />;
 
     case "textarea":
-      return;
+      return <TextareaForm {...attributesField} />;
     case "select":
       return;
     case "checkbox":
