@@ -1,6 +1,6 @@
-import YoutubeForm from "./YoutubeForm";
-import About from "./About";
+import FormikContainer from "./FormikContainer";
+import FormikControl from "./FormikControl";
 import TextError from "./TextError";
-import TestForm from "./TestForm";
+import InputForm from "./InputForm";
 
-export { YoutubeForm, About, TextError, TestForm };
+export { FormikContainer, FormikControl, TextError, InputForm };
