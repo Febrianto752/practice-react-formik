@@ -18,8 +18,8 @@ const handleSubmit = (values, onSubmitProps) => {
   console.log("on Submit Props ", onSubmitProps); // output : {resetForm: ƒ, validateForm: ƒ, validateField: ƒ, setErrors: ƒ, setFieldError: ƒ, setSubmitting: f}
   // test proccess with use setTimeout
   setTimeout(() => {
-    onSubmitProps.setErrors({ username: "something went wrong!" });
     onSubmitProps.setSubmitting(false);
+    onSubmitProps.resetForm();
   }, 2000);
 };
 
@@ -92,6 +92,7 @@ const TestForm = () => {
                 >
                   Use Template
                 </button>
+                <button type="reset">Reset</button>
                 <button
                   type="submit"
                   className="btn btn-primary"
