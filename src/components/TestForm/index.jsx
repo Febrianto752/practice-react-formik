@@ -18,8 +18,14 @@ const handleSubmit = (values, onSubmitProps) => {
   console.log("on Submit Props ", onSubmitProps); // output : {resetForm: ƒ, validateForm: ƒ, validateField: ƒ, setErrors: ƒ, setFieldError: ƒ, setSubmitting: f}
   // test proccess with use setTimeout
   setTimeout(() => {
+    onSubmitProps.setErrors({ username: "something went wrong!" });
     onSubmitProps.setSubmitting(false);
   }, 2000);
+};
+
+const formFillTemplate = {
+  username: "febrianto",
+  password: "febri123",
 };
 
 const TestForm = () => {
@@ -31,6 +37,7 @@ const TestForm = () => {
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
           validateOnMount
+          enableReinitialize
         >
           {(formik) => {
             console.log("value of formik ", formik); // output awal : {values: undefined, errors: {…}, touched: {…}, status: undefined, isSubmitting: false, …}
@@ -78,6 +85,13 @@ const TestForm = () => {
                   Validate all
                 </button>
 
+                <button
+                  type="button"
+                  className="btn btn-warning"
+                  onClick={() => formik.setValues(formFillTemplate)}
+                >
+                  Use Template
+                </button>
                 <button
                   type="submit"
                   className="btn btn-primary"
