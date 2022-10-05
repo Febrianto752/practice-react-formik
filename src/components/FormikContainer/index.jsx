@@ -2,10 +2,26 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { FormikControl } from "../";
 
+const selectOptions = [
+  {
+    id: 1,
+    value: "Web Developer",
+  },
+  {
+    id: 2,
+    value: "Mobile Developer",
+  },
+  {
+    id: 3,
+    value: "UI Designer",
+  },
+];
+
 const initialValues = {
   username: "",
   email: "",
   description: "",
+  profession: "",
 };
 
 const validationSchema = Yup.object({
@@ -14,6 +30,7 @@ const validationSchema = Yup.object({
     .required("email field cannot be empty")
     .email("invalid email format"),
   description: Yup.string().required("description field cannot be empty!"),
+  profession: Yup.string().required("profession field must be filled"),
 });
 
 const handleSubmit = (values, onSubmitProps) => {
@@ -56,6 +73,13 @@ const FormikContainer = () => {
                   name="description"
                   className="form-control"
                   labelText="Description"
+                />
+                <FormikControl
+                  control="select"
+                  name="profession"
+                  className="form-select"
+                  labelText="Profession"
+                  options={selectOptions}
                 />
                 <button type="submit" className="btn btn-primary">
                   Submit

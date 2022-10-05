@@ -1,7 +1,8 @@
-import { InputForm, TextareaForm } from "../";
+import { InputForm, TextareaForm, SelectForm } from "../";
 
 const FormikControl = (props) => {
   const { control, ...attributesField } = props;
+  // isi attributesField bisa berbeda beda sesuan dengan tipe element form yang ingin dipanggil
 
   switch (control) {
     case "input":
@@ -9,9 +10,11 @@ const FormikControl = (props) => {
       return <InputForm {...attributesField} />;
 
     case "textarea":
+      // for textarea tag
       return <TextareaForm {...attributesField} />;
     case "select":
-      return;
+      // for select tag
+      return <SelectForm {...attributesField} />;
     case "checkbox":
       return;
     case "radio":
