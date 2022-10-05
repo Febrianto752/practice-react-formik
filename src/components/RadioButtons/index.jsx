@@ -3,11 +3,12 @@ import { TextError } from "../";
 import { Fragment } from "react";
 
 const RadioButtons = (props) => {
-  const { name, options: optionsRadio, ...attributesRadio } = props;
+  const { name, labelText, options: optionsRadio, ...attributesRadio } = props;
   // isi optionsRadio : {{ id: number, value: 'string', labelText: 'string' },{...}}
   return (
     <>
       <div className="mb-3">
+        <label>{labelText}</label>
         {optionsRadio.map((optionRadio, index) => {
           if (index === 0) {
             return (
@@ -19,7 +20,6 @@ const RadioButtons = (props) => {
                     id={optionRadio.value}
                     value={optionRadio.value}
                     {...attributesRadio}
-                    checked={true}
                   />
                   <label
                     className="form-check-label"

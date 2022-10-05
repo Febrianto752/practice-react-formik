@@ -26,12 +26,19 @@ const radioOptions = [
   { id: 2, value: "female", labelText: "Female" },
 ];
 
+const checkboxOptions = [
+  { id: 1, value: "HTML" },
+  { id: 2, value: "CSS" },
+  { id: 3, value: "Javascript" },
+];
+
 const initialValues = {
   username: "",
   email: "",
   description: "",
   profession: "",
   gender: "",
+  skills: [],
 };
 
 const validationSchema = Yup.object({
@@ -42,6 +49,7 @@ const validationSchema = Yup.object({
   description: Yup.string().required("description field cannot be empty!"),
   profession: Yup.string().required("profession field must be filled"),
   gender: Yup.string().required("gender field must be filled"),
+  skills: Yup.array().required("skill field must be filled"),
 });
 
 const handleSubmit = (values, onSubmitProps) => {
@@ -95,8 +103,16 @@ const FormikContainer = () => {
                 <FormikControl
                   control="radio"
                   name="gender"
+                  labelText="Gender"
                   className="form-check-input"
                   options={radioOptions}
+                />
+                <FormikControl
+                  control="checkbox"
+                  name="skills"
+                  className="form-check-input"
+                  labelText="skills"
+                  options={checkboxOptions}
                 />
                 <button type="submit" className="btn btn-primary">
                   Submit

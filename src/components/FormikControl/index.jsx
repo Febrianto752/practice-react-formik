@@ -1,4 +1,10 @@
-import { InputForm, TextareaForm, SelectForm, RadioButtons } from "../";
+import {
+  InputForm,
+  TextareaForm,
+  SelectForm,
+  RadioButtons,
+  CheckboxesForm,
+} from "../";
 
 const FormikControl = (props) => {
   const { control, ...attributesField } = props;
@@ -18,7 +24,7 @@ const FormikControl = (props) => {
     case "radio":
       return <RadioButtons {...attributesField} />;
     case "checkbox":
-      return;
+      return <CheckboxesForm {...attributesField} />;
     case "date":
       return;
     default:
