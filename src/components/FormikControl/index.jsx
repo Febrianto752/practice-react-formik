@@ -1,4 +1,4 @@
-import { InputForm, TextareaForm, SelectForm } from "../";
+import { InputForm, TextareaForm, SelectForm, RadioButtons } from "../";
 
 const FormikControl = (props) => {
   const { control, ...attributesField } = props;
@@ -15,9 +15,9 @@ const FormikControl = (props) => {
     case "select":
       // for select tag
       return <SelectForm {...attributesField} />;
-    case "checkbox":
-      return;
     case "radio":
+      return <RadioButtons {...attributesField} />;
+    case "checkbox":
       return;
     case "date":
       return;

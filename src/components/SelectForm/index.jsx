@@ -9,10 +9,7 @@ const SelectForm = (props) => {
       <div className="mb-3">
         <label htmlFor={name}>{labelText}</label>
         <Field as="select" id={name} name={name} {...attributesSelect}>
-          <option selected value="0">
-            Select an option
-          </option>
-          {options.map((option) => {
+          {options.map((option, index) => {
             return (
               <option key={option.id} value={option.id}>
                 {option.value}

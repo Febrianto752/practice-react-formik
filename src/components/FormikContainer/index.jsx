@@ -4,6 +4,10 @@ import { FormikControl } from "../";
 
 const selectOptions = [
   {
+    id: 0,
+    value: "Select an option",
+  },
+  {
     id: 1,
     value: "Web Developer",
   },
@@ -17,11 +21,17 @@ const selectOptions = [
   },
 ];
 
+const radioOptions = [
+  { id: 1, value: "male", labelText: "Male" },
+  { id: 2, value: "female", labelText: "Female" },
+];
+
 const initialValues = {
   username: "",
   email: "",
   description: "",
   profession: "",
+  gender: "",
 };
 
 const validationSchema = Yup.object({
@@ -31,6 +41,7 @@ const validationSchema = Yup.object({
     .email("invalid email format"),
   description: Yup.string().required("description field cannot be empty!"),
   profession: Yup.string().required("profession field must be filled"),
+  gender: Yup.string().required("gender field must be filled"),
 });
 
 const handleSubmit = (values, onSubmitProps) => {
@@ -80,6 +91,12 @@ const FormikContainer = () => {
                   className="form-select"
                   labelText="Profession"
                   options={selectOptions}
+                />
+                <FormikControl
+                  control="radio"
+                  name="gender"
+                  className="form-check-input"
+                  options={radioOptions}
                 />
                 <button type="submit" className="btn btn-primary">
                   Submit

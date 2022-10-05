@@ -4,6 +4,7 @@ import TextError from "./TextError";
 import InputForm from "./InputForm";
 import TextareaForm from "./TextareaForm";
 import SelectForm from "./SelectForm";
+import RadioButtons from "./RadioButtons";
 
 export {
   FormikContainer,
@@ -12,4 +13,5 @@ export {
   InputForm,
   TextareaForm,
   SelectForm,
+  RadioButtons,
 };
