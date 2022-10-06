@@ -39,6 +39,7 @@ const initialValues = {
   profession: "",
   gender: "",
   skills: [],
+  birthDate: null,
 };
 
 const validationSchema = Yup.object({
@@ -50,6 +51,7 @@ const validationSchema = Yup.object({
   profession: Yup.string().required("profession field must be filled"),
   gender: Yup.string().required("gender field must be filled"),
   skills: Yup.array().required("skill field must be filled"),
+  birthDate: Yup.date().required("date field cannot be empty!").nullable(),
 });
 
 const handleSubmit = (values, onSubmitProps) => {
@@ -113,6 +115,11 @@ const FormikContainer = () => {
                   className="form-check-input"
                   labelText="skills"
                   options={checkboxOptions}
+                />
+                <FormikControl
+                  control="date"
+                  labelText="Pick a Date"
+                  name="birthDate"
                 />
                 <button type="submit" className="btn btn-primary">
                   Submit

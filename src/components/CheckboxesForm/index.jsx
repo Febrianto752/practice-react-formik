@@ -14,21 +14,20 @@ const CheckboxesForm = (props) => {
     <>
       <div className="mb-3">
         <label>{labelText}</label>
-        <Field name={name} {...attributesCheckbox}>
+        <Field name={name}>
           {({ field }) => {
             return checkboxOptions.map((option) => {
-              console.log(option);
-              console.log(field);
               return (
                 <div className="form-check" key={option.id}>
                   <input
                     type="checkbox"
-                    id={option.id}
+                    id={option.value}
                     {...field}
                     value={option.id}
                     checked={field.value.includes(String(option.id))}
+                    {...attributesCheckbox}
                   />
-                  <label htmlFor={option.id} className="form-check-label">
+                  <label htmlFor={option.value} className="form-check-label">
                     {option.value}
                   </label>
                 </div>

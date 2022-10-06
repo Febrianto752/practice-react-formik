@@ -6,6 +6,7 @@ import TextareaForm from "./TextareaForm";
 import SelectForm from "./SelectForm";
 import RadioButtons from "./RadioButtons";
 import CheckboxesForm from "./CheckboxesForm";
+import DatePicker from "./DatePicker";
 
 export {
   FormikContainer,
@@ -16,4 +17,5 @@ export {
   SelectForm,
   RadioButtons,
   CheckboxesForm,
+  DatePicker,
 };

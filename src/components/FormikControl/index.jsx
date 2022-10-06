@@ -4,6 +4,7 @@ import {
   SelectForm,
   RadioButtons,
   CheckboxesForm,
+  DatePicker,
 } from "../";
 
 const FormikControl = (props) => {
@@ -26,7 +27,7 @@ const FormikControl = (props) => {
     case "checkbox":
       return <CheckboxesForm {...attributesField} />;
     case "date":
-      return;
+      return <DatePicker {...attributesField} />;
     default:
       break;
   }
