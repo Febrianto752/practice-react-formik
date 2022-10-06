@@ -17,7 +17,7 @@ const DatePicker = (props) => {
             const { setFieldValue } = form;
             const { value } = field;
             // console.log(value); //output awal = null, kemudian output : object : Tue Oct 18 2022 00:00:00 GMT+0700 (Waktu Indonesia Barat)
-            console.log(form);
+            // console.log(form);
             return (
               <DateView
                 id={name}

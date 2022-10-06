@@ -50,7 +50,9 @@ const validationSchema = Yup.object({
   description: Yup.string().required("description field cannot be empty!"),
   profession: Yup.string().required("profession field must be filled"),
   gender: Yup.string().required("gender field must be filled"),
-  skills: Yup.array().required("skill field must be filled"),
+  skills: Yup.array()
+    .required("skill field must be filled")
+    .min(1, "skill harus diisi"),
   birthDate: Yup.date().required("date field cannot be empty!").nullable(),
 });
 
