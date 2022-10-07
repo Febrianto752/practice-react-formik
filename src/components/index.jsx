@@ -8,6 +8,8 @@ import RadioButtons from "./RadioButtons";
 import CheckboxesForm from "./CheckboxesForm";
 import DatePicker from "./DatePicker";
 
+import TestForm from "./TestForm";
+
 export {
   FormikContainer,
   FormikControl,
@@ -18,4 +20,5 @@ export {
   RadioButtons,
   CheckboxesForm,
   DatePicker,
+  TestForm,
 };
