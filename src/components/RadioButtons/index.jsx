@@ -25,7 +25,7 @@ const RadioButtons = (props) => {
                     className="form-check-label"
                     htmlFor={optionRadio.value}
                   >
-                    {optionRadio.labelText}
+                    {optionRadio.value}
                   </label>
                 </div>
               </Fragment>
@@ -45,7 +45,7 @@ const RadioButtons = (props) => {
                     className="form-check-label"
                     htmlFor={optionRadio.value}
                   >
-                    {optionRadio.labelText}
+                    {optionRadio.value}
                   </label>
                 </div>
               </Fragment>

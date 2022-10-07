@@ -1,10 +1,9 @@
-import { FormikContainer } from "./components";
-import { TestForm } from "./components";
+import { FormikContainer, TestForm, RegistrationForm } from "./components";
 
 function App() {
   return (
     <>
-      <TestForm />;{/* <FormikContainer /> */}
+      <RegistrationForm />
     </>
   );
 }

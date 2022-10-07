@@ -7,6 +7,7 @@ import SelectForm from "./SelectForm";
 import RadioButtons from "./RadioButtons";
 import CheckboxesForm from "./CheckboxesForm";
 import DatePicker from "./DatePicker";
+import RegistrationForm from "./RegistrationForm";
 
 import TestForm from "./TestForm";
 
@@ -21,4 +22,5 @@ export {
   CheckboxesForm,
   DatePicker,
   TestForm,
+  RegistrationForm,
 };
