@@ -6,10 +6,11 @@ const TestForm = () => {
   const initialValues = {
     username: "",
     age: 0,
-    email: "",
-    url: "http",
-    price: 1000,
-    profession: [],
+
+    social: {
+      facebook: "",
+      twitter: "",
+    },
   };
 
   const validationSchema = Yup.object({
@@ -18,16 +19,13 @@ const TestForm = () => {
       .min(3, "min value is 3 character")
       .max(10, "max value is 10 character"),
     age: Yup.number()
+      .required("age field is required")
       .positive("number field must be positive")
       .integer("number field must be integer"),
-    email: Yup.string().email("format email is wrong"),
-    website: Yup.string().url("wrong url format"),
-    price: Yup.number()
-      .min(1000, "min value is Rp. 1000")
-      .max(1000000, "max value is Rp. 1.000.000"),
-    profession: Yup.array()
-      .min(1, "minimal profession is 1")
-      .max(2, "maximal profession is 2"),
+    social: Yup.object({
+      facebook: Yup.string().required("required").min(3, "min 3 character"),
+      twitter: Yup.string().required("required"),
+    }),
   });
 
   const onSubmit = (values, param2) => {
@@ -41,7 +39,7 @@ const TestForm = () => {
           initialValues={initialValues}
           validationSchema={validationSchema}
           onSubmit={onSubmit}
-          validateOnMount={true}
+          // validateOnMount={true}
         >
           {(formik) => {
             return (
@@ -70,81 +68,40 @@ const TestForm = () => {
                 </div>
 
                 <div className="mb-3">
-                  <label htmlFor="email">Email</label>
-                  <Field
-                    type="email"
-                    name="email"
-                    id="email"
-                    className="form-control"
-                  />
-                  <ErrorMessage name="email" component={TextError} />
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="website">Website</label>
+                  <label htmlFor="facebook">Facebook</label>
                   <Field
                     type="text"
-                    name="website"
-                    id="website"
+                    name="social.facebook"
                     className="form-control"
+                    id="facebook"
                   />
-                  <ErrorMessage name="website" component={TextError} />
+                  <ErrorMessage name="social.facebook" />
                 </div>
                 <div className="mb-3">
-                  <label htmlFor="price">Price</label>
+                  <label htmlFor="twitter">Twitter</label>
                   <Field
-                    type="number"
-                    name="price"
-                    id="price"
+                    type="text"
+                    name="social.twitter"
                     className="form-control"
-                  />
-                  <ErrorMessage name="price" component={TextError} />
-                </div>
-                <div className="mb-3">
-                  <label>Profession</label>
-                  <div className="form-check">
-                    <Field
-                      type="checkbox"
-                      name="profession"
-                      className="form-check-input"
-                      id="web-developer"
-                      value="web developer"
-                    />
-                    <label htmlFor="web-developer" className="form-check-label">
-                      Web Developer
-                    </label>
-                  </div>
-                  <div className="form-check">
-                    <Field
-                      type="checkbox"
-                      name="profession"
-                      className="form-check-input"
-                      id="android-developer"
-                      value="android developer"
-                    />
-                    <label
-                      htmlFor="android-developer"
-                      className="form-check-label"
-                    >
-                      Android Developer
-                    </label>
-                  </div>
-                  <div className="form-check">
-                    <Field
-                      type="checkbox"
-                      name="profession"
-                      className="form-check-input"
-                      id="ios-developer"
-                      value="ios developer"
-                    />
-                    <label htmlFor="ios-developer" className="form-check-label">
-                      IOS Developer
-                    </label>
-                  </div>
-
-                  <ErrorMessage name="profession" component={TextError} />
+                    id="twitter"
+                  >
+                    {(props) => {
+                      console.log("twitter input rendering");
+                      return (
+                        <>
+                          <input {...props.field} className="form-control" />
+                        </>
+                      );
+                    }}
+                  </Field>
+                  <ErrorMessage name="social.twitter" />
                 </div>
 
-                <button className="btn btn-primary" type="submit">
+                <button
+                  className="btn btn-primary"
+                  type="submit"
+                  disabled={!formik.isValid}
+                >
                   Submit
                 </button>
               </Form>

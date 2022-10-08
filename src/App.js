@@ -3,7 +3,7 @@ import { FormikContainer, TestForm, RegistrationForm } from "./components";
 function App() {
   return (
     <>
-      <RegistrationForm />
+      <TestForm />
     </>
   );
 }
